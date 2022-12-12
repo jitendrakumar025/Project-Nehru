@@ -10,6 +10,10 @@ const UserSchema = new Schema({
         required:true,
         unique:true
     },
+   position:{
+        type:String,
+        default:"Boarder"
+    },
    password:{
         type:String,
         required:true

@@ -20,8 +20,8 @@ router.post('/userauth',[
     }
     //check whether the user with the same email exits or not 
     try{
-     let user=await User.findOne({email: req.body.email})
-     console.log(user)
+     let user=await User.findOne({email: req.body.email});
+     console.log(user);
      if(user){
         return res.status(400).json({error:"This id already exit,Please use different email"})
      }
@@ -31,7 +31,8 @@ router.post('/userauth',[
     user=await User.create({
         name: req.body.name,
         password: hashpass,
-        email: req.body.email
+        email: req.body.email,
+        position:req.body.position
       })
     //   .then(user => res.json(user)).catch(err=>{console.log(err),
     //   res.json({error:"Please enter a unique value for email" ,message:err.message})}
@@ -54,7 +55,7 @@ res.status(500).send("Some error occured")
 })
 //ROUTE:2 create a user using :POST "/api/auth/login" 
 router.post('/login',[
-  body('email','enter valid email').isEmail(),
+  body('email','Enter valid email').isEmail(),
   body('password','Password can not be blank').exists(),
 
 ],async (req,res)=>{

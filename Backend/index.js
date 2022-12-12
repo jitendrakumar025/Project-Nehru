@@ -8,6 +8,9 @@ app.use(cors)
 app.use(express.json())
 app.use("/api/auth",require("./routes/auth"))
 app.use("/api/notes",require("./routes/notes"))
+app.use("/api/rooms",require("./routes/rooms"))
+app.use("/api/boarders",require("./routes/boarders"))
+app.use("/api/proposals",require("./routes/proposals"))
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
