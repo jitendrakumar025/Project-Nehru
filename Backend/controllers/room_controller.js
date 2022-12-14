@@ -68,9 +68,9 @@ exports.delete_rooms=async(req,res)=>{
     //finding rooms deleted or not and delete 
     let room= await Rooms.findById(req.params.id)
     if(!room){return res.status(404).send("Not Found")}
-    if(room.user.toString() !==req.user.id){
-            return res.status(401).send("NOt Allowed")
-    }
+    // if(room.user.toString() !==req.user.id){
+    //         return res.status(401).send("NOt Allowed")
+    // }
       room=await Rooms.findByIdAndDelete(req.params.id)
       res.json({"Success":"Room details has been deleted successfully"})
 }

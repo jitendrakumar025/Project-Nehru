@@ -1,10 +1,10 @@
 const mongoose=require("mongoose")
 const { Schema } = mongoose;
 const RoomSchema =new Schema({
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'user'
-        },
+    // user:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:'user'
+    //     },
     number:{
         type:Number,
         required:true
@@ -22,5 +22,5 @@ const RoomSchema =new Schema({
         required:true
     }
 })
-const Room=mongoose.model("rooms",RoomSchema);
+const Room=mongoose.model("room",RoomSchema);
 module.exports=Room;

@@ -2,7 +2,7 @@ const router=require("express").Router();
 const fetchuser=require("../middleware/fetchUser");
 const room_controller=require("../controllers/room_controller");
 
-//ROUTE:1 GET ALL THE Rooms Detail FROM THE DATABASE ,GET "/api/room/fetchrooms"
+//ROUTE:1 GET ALL THE Rooms Detail FROM THE DATABASE ,GET "/api/rooms/fetchrooms"
 router.get('/fetchrooms',fetchuser,room_controller.fetch_rooms)
 //ROUTE:2 ADD NEW Room USING :GET "/api/rooms/addrooms"
 router.post('/addrooms',fetchuser,room_controller.add_rooms)

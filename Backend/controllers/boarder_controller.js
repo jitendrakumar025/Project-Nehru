@@ -24,7 +24,7 @@ exports.add_boarder=async(req,res)=>{
     return res.status(400).json({errors: errors.array()});
     }
 const boarder=new Boarders({
-name,roll_no,email,mobile,is_graduated,graduation_year
+name,roll_no,email,mobile,is_graduated,graduation_year,user:req.user.id
 })
 const savedBoarder=await boarder.save()
 res.json(savedBoarder)
@@ -32,7 +32,6 @@ res.json(savedBoarder)
     console.log(error.message)
     res.status(500).send("Internal server error occured")       
 }
-
 }
 
 //ROUTE:3 UPDATE BOARDER USING :PUT "/api/boarders/updateboarders/:id"
@@ -47,10 +46,10 @@ exports.update_boarder=async(req,res)=>{
     if(graduation_year){newBoarder.graduation_year=graduation_year}
     //finding,updating Boarder and making secure 
     let boarder= await Boarders.findById(req.params.id)
-    if(!boarder){return res.status(404).send("Not Found")}
-    if(boarder.user.toString() !==req.user.id){
-            return res.status(401).send("NOt Allowed")
-    }
+    if(!boarder){return res.status(404).send("Not Found!")}
+    //  if(boarder.user.toString() !==req.user.id){
+    //          return res.status(401).send("NOt Allowed!")
+    //  }
       boarder=await Boarders.findByIdAndUpdate(req.params.id,{$set:newBoarder},{new:true})
       res.json(boarder)}
       catch (error) {
@@ -66,9 +65,9 @@ exports.delete_boarder=async(req,res)=>{
     //finding Boarders deleted or not and delete 
     let boarder= await Boarders.findById(req.params.id)
     if(!boarder){return res.status(404).send("Not Found")}
-    if(boarder.user.toString() !==req.user.id){
-            return res.status(401).send("NOt Allowed")
-    }
+    // if(boarder.user.toString() !==req.user.id){
+    //         return res.status(401).send("NOt Allowed")
+    // }
       boarder=await Boarders.findByIdAndDelete(req.params.id)
       res.json({"Success":"Boarder details has been deleted successfully"})
 }
